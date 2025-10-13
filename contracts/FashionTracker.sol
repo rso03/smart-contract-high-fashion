@@ -131,11 +131,13 @@ function unlinkTracker (
 
 function getProductTracker (uint256 _productId) public view onlyWhenActive onlyProducer returns (bytes32) {
     require (productExistsFlag[_productId], "This product does not exist");
+    require (products[_productId].isLinked, "This product is not linked to any tracker");
     return productToTrackerMap[_productId];
 }
 
 function getTrackerProduct (bytes32 _trackerId) public view onlyWhenActive onlyProducer returns (uint256) {
     require (trackerExistsFlag[_trackerId], "This tracker does not exist");
+    require (trackers[_trackerId].isLinked, "This tracker is not linked to any product");
     return trackerToProductMap[_trackerId];
 }
 

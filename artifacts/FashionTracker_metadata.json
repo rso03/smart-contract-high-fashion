@@ -1010,11 +1010,11 @@
 			]
 		},
 		"contracts/FashionTracker.sol": {
-			"keccak256": "0xd1666a7bd51968bd69c60f422d57f060d45550b996c45d80eb39ff24042180b9",
+			"keccak256": "0x3aee3ce811ce3a1232015a8a525b3eaa4a72c4d72dc832a61c9c312adc95754e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fc9ad0ea9791d33ddc7f847299b30384ce9ff3aeebb5652dfcfe5f9d3eb157f1",
-				"dweb:/ipfs/Qmez4sREGMGeKtuGBrpNnEpyZCPiWf9rnYYhvKsUh79mc8"
+				"bzz-raw://7e195cef59fe9e14eb0a49c3d437e4aed14faec148ed8163e6d37e0de44a9c75",
+				"dweb:/ipfs/QmZH26VYjAyV5gLQJS3MEMiALJpVUZpkPmJFtM2aFtntjE"
 			]
 		}
 	},
