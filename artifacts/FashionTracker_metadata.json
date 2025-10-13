@@ -7,6 +7,11 @@
 		"abi": [
 			{
 				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
 				"name": "AccessControlBadConfirmation",
 				"type": "error"
 			},
@@ -25,6 +30,18 @@
 				],
 				"name": "AccessControlUnauthorizedAccount",
 				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "ContractActivated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "ContractDeactivated",
+				"type": "event"
 			},
 			{
 				"anonymous": false,
@@ -62,6 +79,90 @@
 					}
 				],
 				"name": "ProductCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "productId",
+						"type": "uint256"
+					}
+				],
+				"name": "ProductDeleted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "productId",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "productOwner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "productId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isLinked",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "productName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "productCategory",
+								"type": "string"
+							},
+							{
+								"internalType": "uint32",
+								"name": "productPrice",
+								"type": "uint32"
+							},
+							{
+								"internalType": "string",
+								"name": "productSize",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "productColor",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "productMaterial",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "additionalInfo",
+								"type": "string"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct FashionTracker.Product",
+						"name": "updatedProduct",
+						"type": "tuple"
+					}
+				],
+				"name": "ProductUpdated",
 				"type": "event"
 			},
 			{
@@ -159,6 +260,79 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "trackerId",
+						"type": "bytes32"
+					}
+				],
+				"name": "TrackerDeleted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "trackerId",
+						"type": "bytes32"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "trackerId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "string",
+								"name": "publicKey64",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "registrationDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isLinked",
+								"type": "bool"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct FashionTracker.Tracker",
+						"name": "updatedTracker",
+						"type": "tuple"
+					}
+				],
+				"name": "TrackerUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "productId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "trackerId",
+						"type": "bytes32"
+					}
+				],
+				"name": "Unlinked",
+				"type": "event"
+			},
+			{
 				"inputs": [],
 				"name": "DEFAULT_ADMIN_ROLE",
 				"outputs": [
@@ -173,7 +347,66 @@
 			},
 			{
 				"inputs": [],
+				"name": "PRODUCER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "activateContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contractIsActive",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contractOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "countProducts",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "countTrackers",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -235,12 +468,50 @@
 			{
 				"inputs": [
 					{
+						"internalType": "bytes32",
+						"name": "_trackerId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "_publicKey64",
+						"type": "string"
+					}
+				],
+				"name": "createTracker",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deactivateContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "_productId",
 						"type": "uint256"
 					}
 				],
 				"name": "deleteProduct",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_trackerId",
+						"type": "bytes32"
+					}
+				],
+				"name": "deleteTracker",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -319,6 +590,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_productId",
+						"type": "uint256"
+					}
+				],
+				"name": "getProductTracker",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes32",
 						"name": "role",
 						"type": "bytes32"
@@ -330,6 +620,66 @@
 						"internalType": "bytes32",
 						"name": "",
 						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_trackerId",
+						"type": "bytes32"
+					}
+				],
+				"name": "getTracker",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "trackerId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "string",
+								"name": "publicKey64",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "registrationDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isLinked",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct FashionTracker.Tracker",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_trackerId",
+						"type": "bytes32"
+					}
+				],
+				"name": "getTrackerProduct",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -383,119 +733,16 @@
 						"internalType": "uint256",
 						"name": "_productId",
 						"type": "uint256"
-					}
-				],
-				"name": "productExists",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "productExistsFlag",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "productToTrackerMap",
-				"outputs": [
+					},
 					{
 						"internalType": "bytes32",
-						"name": "",
+						"name": "_trackerId",
 						"type": "bytes32"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "products",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "productOwner",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "productId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "isLinked",
-						"type": "bool"
-					},
-					{
-						"internalType": "string",
-						"name": "productName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "productCategory",
-						"type": "string"
-					},
-					{
-						"internalType": "uint32",
-						"name": "productPrice",
-						"type": "uint32"
-					},
-					{
-						"internalType": "string",
-						"name": "productSize",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "productColor",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "productMaterial",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "additionalInfo",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
+				"name": "linkTracker",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -557,72 +804,18 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "_productId",
 						"type": "uint256"
-					}
-				],
-				"name": "trackerExistsFlag",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
+					},
 					{
 						"internalType": "bytes32",
-						"name": "",
+						"name": "_trackerId",
 						"type": "bytes32"
 					}
 				],
-				"name": "trackerToProductMap",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "trackers",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "trackerId",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "string",
-						"name": "publicKey64",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "registrationDate",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "isLinked",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
+				"name": "unlinkTracker",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -684,6 +877,24 @@
 					}
 				],
 				"name": "updateProduct",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_trackerId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "_newPublicKey64",
+						"type": "string"
+					}
+				],
+				"name": "updateTracker",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -799,11 +1010,11 @@
 			]
 		},
 		"contracts/FashionTracker.sol": {
-			"keccak256": "0xef5d283b01243ca21e622ea3c2cfef6a39c7e13a34fd574bda95bac64dcefa7d",
+			"keccak256": "0xd1666a7bd51968bd69c60f422d57f060d45550b996c45d80eb39ff24042180b9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c73d0cca27c1ad8c1496fc2cdb752993523272aceaea09af66a6627773665bb1",
-				"dweb:/ipfs/Qmd5V9BLatWG9pLKecTkPZ8LhzU818AyYZhzfVZukPCwEJ"
+				"bzz-raw://fc9ad0ea9791d33ddc7f847299b30384ce9ff3aeebb5652dfcfe5f9d3eb157f1",
+				"dweb:/ipfs/Qmez4sREGMGeKtuGBrpNnEpyZCPiWf9rnYYhvKsUh79mc8"
 			]
 		}
 	},
